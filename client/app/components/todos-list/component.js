@@ -3,13 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'ul',
   channel: Ember.inject.service(),
+  chan: null,
 
-  didInsertElement: function(){
-    var socket = this.get('channel').socket();
-    socket.connect();
-    var chan = socket.chan("todos:list", {});
-    chan.join().receive("ok", chan => {
-      console.log("Success!");
-    });
-  }
+  setupChannel: function(){
+    this.set('chan', this.get('channel').connect());
+  }.on('init')
 });
