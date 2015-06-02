@@ -12,7 +12,5 @@ config :logger, level: :warn
 # Configure your database
 config :todo_channels, TodoChannels.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "todo_channels_test",
   size: 1 # Use a single connection for transactional tests
