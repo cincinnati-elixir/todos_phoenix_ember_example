@@ -12,7 +12,7 @@ export default Ember.Service.extend({
     var socket = this.socket();
     socket.connect();
     var chan = socket.chan("todos:list", {});
-    this.set('chan', chan);
+
     chan.join().receive("ok", data => {
       console.log("Success!");
     });

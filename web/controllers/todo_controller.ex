@@ -2,6 +2,7 @@ defmodule TodoChannels.TodoController do
   use TodoChannels.Web, :controller
 
   alias TodoChannels.Todo
+  alias TodoChannels.TodoView
 
   plug :scrub_params, "todo" when action in [:create, :update]
   plug :action
@@ -16,6 +17,7 @@ defmodule TodoChannels.TodoController do
 
     if changeset.valid? do
       todo = Repo.insert(changeset)
+      TodoChannels.Endpoint.broadcast! "todos:list", "new_todo", TodoView.render("show.json", %{todo: todo})
       render(conn, "show.json", todo: todo)
     else
       conn
