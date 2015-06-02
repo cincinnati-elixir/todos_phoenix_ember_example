@@ -18,8 +18,9 @@ defmodule TodoChannels.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", TodoChannels do
-  #   pipe_through :api
-  # end
+  scope "/api", TodoChannels do
+    pipe_through :api
+
+    resources "/todos", TodoController
+  end
 end
