@@ -9,9 +9,11 @@ To start your new Phoenix and Ember-Cli application:
 2. Start Phoenix endpoint with `mix phoenix.server`
 3. Run the Ember-Cli application
 
-`cd client`
-`npm install`
-`bower install`
-`ember s`
+```
+cd client
+npm install
+bower install
+ember s
+```
 
 Now you can visit `localhost:4200` from your browser.
