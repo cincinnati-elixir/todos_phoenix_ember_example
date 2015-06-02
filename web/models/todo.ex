@@ -22,3 +22,13 @@ defmodule TodoChannels.Todo do
     |> cast(params, @required_fields, @optional_fields)
   end
 end
+
+defimpl Poison.Encoder, for: TodoChannels.Todo do
+  def encode(todo, _options) do
+    %{id: "#{todo.id}",
+      title: todo.title,
+      isCompleted: todo.is_completed
+      |> Poison.Encoder.encode([])
+     }
+  end
+end
