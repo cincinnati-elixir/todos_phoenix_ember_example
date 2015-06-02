@@ -23,4 +23,8 @@ defmodule TodoChannels.Router do
 
     resources "/todos", TodoController
   end
+
+  socket "/ws", TodoChannels do
+    channel "todos:list", TodoChannel
+  end
 end
