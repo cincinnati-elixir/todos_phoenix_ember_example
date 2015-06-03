@@ -8,10 +8,11 @@ export default Ember.Component.extend({
   setupChannel: function(){
     this.set('chan', this.get('channel').connect());
 
-    this.chan.on("new_todo", todo => {
-      console.log("Recieved new TODO!");
+    this.chan.on("todo", todo => {
+      console.log("Recieved updated TODO!");
       console.log(todo);
       this.get('store').push('todo', todo.todo);
     });
+
   }.on('init')
 });

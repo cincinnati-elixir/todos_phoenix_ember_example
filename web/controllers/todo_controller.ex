@@ -17,7 +17,7 @@ defmodule TodoChannels.TodoController do
 
     if changeset.valid? do
       todo = Repo.insert(changeset)
-      TodoChannels.Endpoint.broadcast! "todos:list", "new_todo", TodoView.render("show.json", %{todo: todo})
+      TodoChannels.Endpoint.broadcast! "todos:list", "todo", TodoView.render("show.json", %{todo: todo})
       render(conn, "show.json", todo: todo)
     else
       conn
@@ -37,6 +37,7 @@ defmodule TodoChannels.TodoController do
 
     if changeset.valid? do
       todo = Repo.update(changeset)
+      TodoChannels.Endpoint.broadcast! "todos:list", "todo", TodoView.render("show.json", %{todo: todo})
       render(conn, "show.json", todo: todo)
     else
       conn
