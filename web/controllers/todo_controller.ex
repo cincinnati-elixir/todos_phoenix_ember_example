@@ -50,6 +50,7 @@ defmodule TodoChannels.TodoController do
     todo = Repo.get(Todo, id)
 
     todo = Repo.delete(todo)
+    TodoChannels.Endpoint.broadcast! "todos:list", "deleted_todo", TodoView.render("show.json", %{todo: todo})
     render(conn, "show.json", todo: todo)
   end
 end
