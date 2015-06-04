@@ -28,7 +28,6 @@ defimpl Poison.Encoder, for: TodoChannels.Todo do
     %{id: "#{todo.id}",
       title: todo.title,
       isCompleted: todo.is_completed
-      |> Poison.Encoder.encode([])
-     }
+     } |> Poison.Encoder.encode([])
   end
 end
