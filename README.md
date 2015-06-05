@@ -17,3 +17,10 @@ ember s
 ```
 
 Now you can visit `localhost:4200` from your browser.
+
+
+## Running Feature tests
+
+1. Run the test server in a shell `./bin/test-server
+2. Run chrome_driver in a shell `chromedriver`
+3. Run the feature tests `mix test test/features/adding_todos_feature.exs`
