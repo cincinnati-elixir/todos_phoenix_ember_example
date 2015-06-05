@@ -17,8 +17,17 @@ defmodule TodoChannels.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {TodoChannels, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+     applications: applications(Mix.env)]
+  end
+
+  def applications(:test) do
+    [:phoenix, :phoenix_html, :cowboy, :logger,
+     :phoenix_ecto, :postgrex, :hound]
+  end
+
+  def applications(_) do
+    [:phoenix, :phoenix_html, :cowboy, :logger,
+     :phoenix_ecto, :postgrex]
   end
 
   # Specifies which paths to compile per environment
@@ -34,6 +43,8 @@ defmodule TodoChannels.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 1.0"},
      {:phoenix_live_reload, "~> 0.4", only: :dev},
+     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.1"},
+     {:hound, github: "st23am/hound"},
      {:cowboy, "~> 1.0"}]
   end
 end
