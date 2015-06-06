@@ -35,10 +35,13 @@ defmodule TodoChannels.AddingTodosFeature do
 
     in_browser_session(:default, fn ->
       TodoPage.add_todo("Todo from Session 1")
+
+      assert String.contains?(page_source, "Todo from Session 1")
       assert String.contains?(page_source, "Todo from Session 2")
     end)
 
     in_browser_session(:session_two, fn ->
+      assert String.contains?(page_source, "Todo from Session 1")
       assert String.contains?(page_source, "Todo from Session 2")
     end)
   end
