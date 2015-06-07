@@ -43,8 +43,7 @@ defmodule TodoChannels.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 1.0"},
      {:phoenix_live_reload, "~> 0.4", only: :dev},
-     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.1"},
-     {:hound, github: "st23am/hound"},
+     {:hound, "~> 0.7.2"},
      {:cowboy, "~> 1.0"}]
   end
 end
