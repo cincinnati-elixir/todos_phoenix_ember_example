@@ -1,17 +1,18 @@
+
 defmodule TodoChannels.AddingTodosFeature do
   use TodoChannels.ConnCase
   use Hound.Helpers
-
-  hound_session
 
   setup do
     TodoChannels.Endpoint.start_link
     :ok
   end
 
+  hound_session
+
   test "Navigating to the app." do
     TodoPage.visit_page
-    assert current_url == "http://localhost:4100/"
+    assert current_url == TodoPage.url
   end
 
   test "Adding a Todo." do
