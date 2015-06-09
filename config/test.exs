@@ -9,7 +9,7 @@ config :todo_channels, TodoChannels.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :hound, driver: "selenium"
+config :hound, driver: "chrome_driver"
 
 # Configure your database
 config :todo_channels, TodoChannels.Repo,
