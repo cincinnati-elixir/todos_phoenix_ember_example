@@ -10,7 +10,7 @@ defmodule TodoChannels.AddingTodosFeature do
     TodoPage.visit_page
     TodoPage.add_todo("A new Hound Todo")
 
-    assert String.contains?(page_source, "A new Hound Todo")
+    assert TodoPage.has_todo?("A new Hound Todo")
   end
 
 
@@ -22,19 +22,19 @@ defmodule TodoChannels.AddingTodosFeature do
 
     in_browser_session(:session_two, fn ->
       TodoPage.add_todo("Todo from Session 2")
-      assert String.contains?(page_source, "Todo from Session 2")
+      assert TodoPage.has_todo?("Todo from Session 2")
     end)
 
     in_browser_session(:default, fn ->
       TodoPage.add_todo("Todo from Session 1")
 
-      assert String.contains?(page_source, "Todo from Session 1")
-      assert String.contains?(page_source, "Todo from Session 2")
+      assert TodoPage.has_todo?("Todo from Session 1")
+      assert TodoPage.has_todo?("Todo from Session 2")
     end)
 
     in_browser_session(:session_two, fn ->
-      assert String.contains?(page_source, "Todo from Session 1")
-      assert String.contains?(page_source, "Todo from Session 2")
+      assert TodoPage.has_todo?("Todo from Session 1")
+      assert TodoPage.has_todo?("Todo from Session 2")
     end)
   end
 end
