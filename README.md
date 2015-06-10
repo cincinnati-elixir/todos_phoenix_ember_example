@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/cincinnati-elixir/todos_phoenix_ember_example.svg?branch=master)](https://travis-ci.org/cincinnati-elixir/todos_phoenix_ember_example)
 # TodoChannels
 A very basic example using /ember-cli/ember-cli-todos with a Phoenix Framework backend.
 
@@ -21,6 +22,6 @@ Now you can visit `localhost:4200` from your browser.
 
 ## Running the Tests Suite
 
-1. Run the test server in a shell `./bin/test-server
-2. Run chrome_driver in a shell `chromedriver`
-3. Run the tests `mix test`
+1. Run the selinum-server `selenium-server`
+2. Run the tests `mix test`
+

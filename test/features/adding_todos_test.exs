@@ -1,14 +1,6 @@
 
 defmodule TodoChannels.AddingTodosFeature do
-  use TodoChannels.ConnCase
-  use Hound.Helpers
-
-  setup do
-    TodoChannels.Endpoint.start_link
-    :ok
-  end
-
-  hound_session
+  use TodoChannels.FeatureCase
 
   test "Navigating to the app." do
     TodoPage.visit_page

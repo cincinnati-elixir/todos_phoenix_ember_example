@@ -2,7 +2,7 @@ defmodule TodoPage do
   use Hound.Helpers
 
   def url do
-    System.get_env("TEST_ROOT_URL") || "http://localhost:4100/"
+    System.get_env("TEST_ROOT_URL") || "http://localhost:4001/index.html"
   end
 
   def visit_page do
