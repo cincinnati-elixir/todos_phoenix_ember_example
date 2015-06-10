@@ -1,4 +1,3 @@
-
 defmodule TodoChannels.AddingTodosFeature do
   use TodoChannels.FeatureCase
 
@@ -18,13 +17,13 @@ defmodule TodoChannels.AddingTodosFeature do
   test "connected clients see todos added in realtime" do
     TodoPage.visit_page
 
-   change_session_to(:session_two)
-   TodoPage.visit_page
+    change_session_to(:session_two)
+    TodoPage.visit_page
 
-   in_browser_session(:session_two, fn ->
-     TodoPage.add_todo("Todo from Session 2")
-     assert String.contains?(page_source, "Todo from Session 2")
-   end)
+    in_browser_session(:session_two, fn ->
+      TodoPage.add_todo("Todo from Session 2")
+      assert String.contains?(page_source, "Todo from Session 2")
+    end)
 
     in_browser_session(:default, fn ->
       TodoPage.add_todo("Todo from Session 1")
