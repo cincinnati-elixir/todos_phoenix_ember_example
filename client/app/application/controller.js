@@ -5,5 +5,5 @@ export default Ember.Controller.extend({
   state: 'all',
   queryParams: [
     'state'
-  ],
+  ]
 });
