@@ -5,6 +5,7 @@ var filterBy = Ember.computed.filterBy;
 var computed = Ember.computed;
 
 export default Ember.Component.extend({
+  store: Ember.inject.service(),
   filtered: computed('todos.@each.isCompleted', 'filter', function() {
     var filter = this.get('filter');
     var all = this.get('todos');
@@ -45,7 +46,7 @@ export default Ember.Component.extend({
       }
 
       // Create the new Todo model
-      var todo = this.store.createRecord('todo', {
+      var todo = this.get('store').createRecord('todo', {
         title: title
       });
 

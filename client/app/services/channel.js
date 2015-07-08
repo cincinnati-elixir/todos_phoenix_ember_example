@@ -14,7 +14,7 @@ export default Ember.Service.extend({
     let chan = socket.chan(`${channel}:${topic}`, initialPayload);
 
     chan.join().receive("ok", data => {
-      console.log("Success!");
+      console.log("Success!", data);
     });
     return chan;
   }

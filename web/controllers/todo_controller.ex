@@ -4,7 +4,7 @@ defmodule TodoChannels.TodoController do
   alias TodoChannels.Todo
   alias TodoChannels.TodoView
 
-  plug :scrub_params, "todo" when action in [:create, :update]
+  plug :scrub_params, "data" when action in [:create, :update]
   plug :action
 
   def index(conn, _params) do
@@ -12,13 +12,16 @@ defmodule TodoChannels.TodoController do
     render(conn, "index.json", todos: todos)
   end
 
-  def create(conn, %{"todo" => todo_params}) do
+  def create(conn, %{"data" => payload}) do
+    todo_params = Dict.get(payload, "attributes")
     changeset = Todo.changeset(%Todo{}, todo_params)
 
     if changeset.valid? do
       todo = Repo.insert(changeset)
       TodoChannels.Endpoint.broadcast! "todos:list", "todo", TodoView.render("show.json", %{todo: todo})
-      render(conn, "show.json", todo: todo)
+      conn
+        |> put_status(201) # 201 is the proper status code for a created resource
+        |> render "show.json", todo: todo
     else
       conn
       |> put_status(:unprocessable_entity)
@@ -31,8 +34,9 @@ defmodule TodoChannels.TodoController do
     render conn, "show.json", todo: todo
   end
 
-  def update(conn, %{"id" => id, "todo" => todo_params}) do
+  def update(conn, %{"id" => id, "data" => payload}) do
     todo = Repo.get(Todo, id)
+    todo_params = Dict.get(payload, "attributes")
     changeset = Todo.changeset(todo, todo_params)
 
     if changeset.valid? do
