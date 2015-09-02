@@ -5,7 +5,6 @@ defmodule TodoChannels.TodoController do
   alias TodoChannels.TodoView
 
   plug :scrub_params, "todo" when action in [:create, :update]
-  plug :action
 
   def index(conn, _params) do
     todos = Repo.all(Todo)

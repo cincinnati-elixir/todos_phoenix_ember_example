@@ -1,6 +1,8 @@
 defmodule TodoChannels.Endpoint do
   use Phoenix.Endpoint, otp_app: :todo_channels
 
+  socket "/ws", TodoChannels.TodoSocket
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
@@ -12,6 +14,7 @@ defmodule TodoChannels.Endpoint do
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
+    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
   end
@@ -31,6 +34,6 @@ defmodule TodoChannels.Endpoint do
     key: "_todo_channels_key",
     signing_salt: "BAAiX5QG"
 
-  plug :router, TodoChannels.Router
+  plug TodoChannels.Router
 end
 

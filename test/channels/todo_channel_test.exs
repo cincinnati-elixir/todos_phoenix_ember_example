@@ -4,7 +4,7 @@ defmodule TodoChannels.TodoChannelTest do
   alias TodoChannels.TodoChannel
 
   setup do
-    {:ok, _, socket} = subscribe_and_join(TodoChannel, "todos:list")
+    {:ok, _, socket} = socket() |> subscribe_and_join(TodoChannel, "todos:list")
     {:ok, socket: socket}
   end
 
