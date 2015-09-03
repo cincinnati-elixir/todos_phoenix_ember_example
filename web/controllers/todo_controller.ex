@@ -15,7 +15,7 @@ defmodule TodoChannels.TodoController do
     changeset = Todo.changeset(%Todo{}, todo_params)
 
     if changeset.valid? do
-      todo = Repo.insert(changeset)
+      {:ok, todo} = Repo.insert(changeset)
       TodoChannels.Endpoint.broadcast! "todos:list", "todo", TodoView.render("show.json", %{todo: todo})
       render(conn, "show.json", todo: todo)
     else
@@ -26,16 +26,16 @@ defmodule TodoChannels.TodoController do
   end
 
   def show(conn, %{"id" => id}) do
-    todo = Repo.get(Todo, id)
+    todo = Repo.get!(Todo, id)
     render conn, "show.json", todo: todo
   end
 
   def update(conn, %{"id" => id, "todo" => todo_params}) do
-    todo = Repo.get(Todo, id)
+    todo = Repo.get!(Todo, id)
     changeset = Todo.changeset(todo, todo_params)
 
     if changeset.valid? do
-      todo = Repo.update(changeset)
+      todo = Repo.update!(changeset)
       TodoChannels.Endpoint.broadcast! "todos:list", "todo", TodoView.render("show.json", %{todo: todo})
       render(conn, "show.json", todo: todo)
     else
@@ -46,9 +46,9 @@ defmodule TodoChannels.TodoController do
   end
 
   def delete(conn, %{"id" => id}) do
-    todo = Repo.get(Todo, id)
+    todo = Repo.get!(Todo, id)
 
-    todo = Repo.delete(todo)
+    todo = Repo.delete!(todo)
     TodoChannels.Endpoint.broadcast! "todos:list", "deleted_todo", TodoView.render("show.json", %{todo: todo})
     render(conn, "show.json", todo: todo)
   end
