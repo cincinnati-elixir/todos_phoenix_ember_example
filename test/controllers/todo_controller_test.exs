@@ -16,7 +16,7 @@ defmodule TodoChannels.TodoControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    todo = Repo.insert %Todo{}
+    todo = Repo.insert! %Todo{}
     conn = get conn, todo_path(conn, :show, todo)
     assert json_response(conn, 200)["todo"] == %{
       "id" => todo.id,
@@ -37,20 +37,20 @@ defmodule TodoChannels.TodoControllerTest do
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    todo = Repo.insert %Todo{}
+    todo = Repo.insert! %Todo{}
     conn = put conn, todo_path(conn, :update, todo), todo: @valid_attrs
     assert json_response(conn, 200)["todo"]["id"]
     assert Repo.get_by(Todo, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    todo = Repo.insert %Todo{}
+    todo = Repo.insert! %Todo{}
     conn = put conn, todo_path(conn, :update, todo), todo: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    todo = Repo.insert %Todo{}
+    todo = Repo.insert! %Todo{}
     conn = delete conn, todo_path(conn, :delete, todo)
     assert json_response(conn, 200)["todo"]["id"]
     refute Repo.get(Todo, todo.id)

@@ -23,11 +23,11 @@ defmodule TodoChannels.Todo do
   end
 end
 
-defimpl Poison.Encoder, for: TodoChannels.Todo do
-  def encode(todo, _options) do
-    %{id: "#{todo.id}",
-      title: todo.title,
-      isCompleted: todo.is_completed
-     } |> Poison.Encoder.encode([])
-  end
-end
+#defimpl Poison.Encoder, for: TodoChannels.Todo do
+#  def encode(todo, _options) do
+#    %{id: "#{todo.id}",
+#      title: todo.title,
+#      isCompleted: todo.is_completed
+#     } |> Poison.Encoder.encode([])
+#  end
+#end

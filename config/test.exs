@@ -15,4 +15,4 @@ config :hound, driver: "selenium"
 config :todo_channels, TodoChannels.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "todo_channels_test",
-  size: 1 # Use a single connection for transactional tests
+  pool: Ecto.Adapters.SQL.Sandbox
